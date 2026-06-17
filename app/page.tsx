@@ -1,65 +1,108 @@
-import Image from "next/image";
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="w-full">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-amber-900 to-amber-700 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <div className="text-7xl mb-4">☕</div>
+          <h1 className="text-5xl font-bold mb-4">Selamat Datang di Cafe Shop</h1>
+          <p className="text-xl mb-8 text-amber-100">
+            Kopi terbaik dan makanan lezat disiapkan khusus untuk Anda
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/menu"
+            className="inline-block bg-amber-400 text-amber-900 px-8 py-3 rounded-lg font-bold text-lg hover:bg-amber-300 transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Lihat Menu Kami
+          </Link>
         </div>
-      </main>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
+            Mengapa Memilih Kami?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-5xl mb-4">🫘</div>
+              <h3 className="text-xl font-bold mb-2">Biji Kopi Berkualitas</h3>
+              <p className="text-gray-600">
+                Kami hanya menggunakan biji kopi pilihan dari petani terpercaya
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl mb-4">👨‍🍳</div>
+              <h3 className="text-xl font-bold mb-2">Barista Profesional</h3>
+              <p className="text-gray-600">
+                Setiap minuman dibuat oleh barista bersertifikat dengan sempurna
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-5xl mb-4">🚚</div>
+              <h3 className="text-xl font-bold mb-2">Pengiriman Cepat</h3>
+              <p className="text-gray-600">
+                Pesan sekarang dan terima pesanan Anda dalam waktu singkat
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-amber-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-gray-900">
+            Siap untuk Mencoba Kopi Terbaik?
+          </h2>
+          <p className="text-gray-600 mb-8 text-lg">
+            Pesan sekarang dan nikmati pengalaman minum kopi yang tak terlupakan
+          </p>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Link
+              href="/menu"
+              className="bg-amber-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-amber-700 transition"
+            >
+              Pesan Sekarang
+            </Link>
+            <Link
+              href="/login"
+              className="border-2 border-amber-600 text-amber-600 px-8 py-3 rounded-lg font-bold hover:bg-amber-50 transition"
+            >
+              Login
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Items Preview */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
+            Menu Populer Kami
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { name: 'Espresso', emoji: '☕' },
+              { name: 'Cappuccino', emoji: '🥛' },
+              { name: 'Latte', emoji: '☕' },
+              { name: 'Americano', emoji: '☕' },
+            ].map((item) => (
+              <div
+                key={item.name}
+                className="bg-amber-50 rounded-lg p-6 text-center hover:shadow-lg transition"
+              >
+                <div className="text-5xl mb-3">{item.emoji}</div>
+                <h3 className="text-xl font-bold text-gray-900">{item.name}</h3>
+                <p className="text-amber-600 font-semibold mt-2">Mulai dari Rp 25.000</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

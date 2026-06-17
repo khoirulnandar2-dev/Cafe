@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+}
+
+// User Model - untuk Admin dan Customer
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  name      String
+  password  String
+  role      String     @default("customer") // "admin" atau "customer"
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  
+  orders    Order[]
+}
+
+// Product Model - Menu Kopi
+model Product {
+  id        String     @id @default(cuid())
+  name      String
+  category  String     // "Kopi", "Non-Kopi", "Makanan", etc
+  price     Int        // dalam rupiah
+  image     String?    // URL ke gambar
+  description String?
+  stock     Int        @default(10)
+  isActive  Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  
+  orderItems OrderItem[]
+}
+
+// Order Model - Transaksi/Pesanan
+model Order {
+  id              String     @id @default(cuid())
+  userId          String
+  user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  totalPrice      Int        // dalam rupiah
+  paymentMethod   String     // "cod" atau "dana"
+  paymentStatus   String     @default("pending") // "pending", "confirmed", "failed"
+  orderStatus     String     @default("pending") // "pending", "confirmed", "preparing", "ready", "completed", "cancelled"
+  
+  proofImage      String?    // URL bukti transfer
+  notes           String?
+  
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  
+  items           OrderItem[]
+}
+
+// Order Item Model - Detail produk dalam pesanan
+model OrderItem {
+  id        String     @id @default(cuid())
+  orderId   String
+  order     Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  productId String
+  product   Product    @relation(fields: [productId], references: [id])
+  
+  quantity  Int
+  price     Int        // harga saat pemesanan
+  
+  @@unique([orderId, productId])
+}
